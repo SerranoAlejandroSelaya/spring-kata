@@ -1,5 +1,7 @@
 package com.ss.web.app.model;
 
+import java.util.Objects;
+
 public class Subject {
   private Long code;
   private String title;
@@ -33,5 +35,18 @@ public class Subject {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Subject subject = (Subject) o;
+    return Objects.equals(code, subject.code) && Objects.equals(title, subject.title) && Objects.equals(description, subject.description);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(code, title, description);
   }
 }

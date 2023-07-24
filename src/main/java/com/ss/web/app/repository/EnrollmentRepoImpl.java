@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Repository
@@ -68,5 +69,18 @@ public class EnrollmentRepoImpl implements EnrollmentRepo {
             .filter(c -> c.getStudent().getId().equals(id))
             .map(Enrollment::getSubject)
             .collect(Collectors.toList());
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    EnrollmentRepoImpl that = (EnrollmentRepoImpl) o;
+    return Objects.equals(college, that.college);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(college);
   }
 }
